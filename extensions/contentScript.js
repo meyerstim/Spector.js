@@ -86,11 +86,11 @@ var spectorCommunicationRebuildProgramElementId = "SPECTOR_COMMUNICATION_REBUILD
 
 var spectorContextTypeKey = "__spector_context_type";
 
-var captureOnLoad = false;
+var captureOnLoad = true;
 var captureOnLoadTransient = false;
 var captureOnLoadQuickCapture = false;
-var captureOnLoadFullCapture = false;
-var captureOnLoadCommandCount = 500;
+var captureOnLoadFullCapture = true;
+var captureOnLoadCommandCount = 150;
 var captureOffScreen = false;
 
 if (sessionStorage.getItem(spectorCaptureOnLoadKey) === "true") {

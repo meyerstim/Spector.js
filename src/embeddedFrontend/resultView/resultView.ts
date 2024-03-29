@@ -85,7 +85,7 @@ export class ResultView {
         this.searchText = "";
         this.currentCommandId = -1;
         this.visible = false;
-        this.commandCount = 0;
+        this.commandCount = 150;
 
         this.commandListStateId = -1;
         this.commandDetailStateId = -1;
@@ -344,7 +344,7 @@ export class ResultView {
         this.mvx.updateState(this.menuStateId, {
             status: MenuStatus.Captures,
             searchText: this.searchText,
-            commandCount: 0,
+            commandCount: 500,
         });
         this.resultViewMenuComponent.onCloseClicked.add((_) => {
             this.hide();

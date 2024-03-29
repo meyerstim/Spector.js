@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", function() {
     captureNowElement.addEventListener("click", (e) => {
         var commandCount = parseInt(captureOnLoadCountInput.value);
         if (commandCount < 0 || commandCount === Number.NaN) {
-            commandCount = 500;
+            commandCount = 150;
         }
         var quickCaptureInput = document.getElementById("quickCapture");
         var fullCaptureInput = document.getElementById("fullCapture");
@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
         var fullCapture = fullCaptureInput.checked;
         var commandCount = parseInt(captureOnLoadCountInput.value);
         if (commandCount < 0 || commandCount === Number.NaN) {
-            commandCount = 500;
+            commandCount = 150;
         }
         this.captureonLoad(commandCount, transient, quickCapture, fullCapture); 
         return false; 

@@ -56,6 +56,9 @@ export class ReadPixelsHelper {
             return undefined;
         }
 
+        // TODO Console.log TEST
+        // tslint:disable-next-line:no-console
+        // console.log("PIXEL-Helper: " + pixels);
         // In case of unsigned bytes, return directly.
         if (type === WebGlConstants.UNSIGNED_BYTE.value) {
             return pixels as Uint8Array;
@@ -71,7 +74,9 @@ export class ReadPixelsHelper {
                 newPixels[i * width * 4 + j * 4 + 3] = Math.min(Math.max((pixels as any)[i * width * 4 + j * 4 + 3], 0), 1) * 255;
             }
         }
-
+        // TODO Console.log TEST
+        // tslint:disable-next-line:no-console
+        console.log("PIXEL-Helper: " + newPixels);
         return newPixels;
     }
 

@@ -52,6 +52,7 @@ export class VisualState extends BaseState {
             // In case of the main canvas, we draw the entire screen instead of the viewport only.
             // This will help for instance in VR use cases.
             this.getCapture(gl, "Canvas COLOR_ATTACHMENT", 0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, 0, 0, WebGlConstants.UNSIGNED_BYTE.value);
+
             return;
         }
 
@@ -63,6 +64,7 @@ export class VisualState extends BaseState {
         const height = viewport[3];
 
         this.currentState["FrameBuffer"] = this.getSpectorData(frameBuffer);
+
 
         // Check FBO status.
         const status = this.context.checkFramebufferStatus(WebGlConstants.FRAMEBUFFER.value);
@@ -252,6 +254,10 @@ export class VisualState extends BaseState {
             try {
                 // Read the pixels from the context.
                 const pixels = ReadPixelsHelper.readPixels(gl, x, y, width, height, type);
+                // TODO Console.log TEST
+                // tslint:disable-next-line:no-console
+                console.log("PIXEL-WERTE: /n Breite: " + width + "/n Höhe: " + height + "/n Werte: " + pixels);
+                // Hier werden Pixel-Werte verwendet
                 if (pixels) {
                     // Copy the pixels to a working 2D canvas same size.
                     this.workingCanvas.width = width;
@@ -259,6 +265,21 @@ export class VisualState extends BaseState {
                     const imageData = this.workingContext2D.createImageData(Math.ceil(width), Math.ceil(height));
                     imageData.data.set(pixels);
                     this.workingContext2D.putImageData(imageData, 0, 0);
+
+                    // TODO Hier Image Export
+                    const dataUrl = this.captureCanvas.toDataURL();
+                    const base64Data = dataUrl.split(",")[1];
+                    // Dekodieren des Base64-Strings in einen ArrayBuffer
+                    const arrayBuffer = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+                    // Erstellen eines Blob-Objekts aus dem ArrayBuffer
+                    const blob = new Blob([arrayBuffer], { type: "image/png" });
+                    // Erstellen eines Dateinamens
+                    const filename = `image-${Date.now()}.png`;
+                    // Erstellen eines Links zum Herunterladen der Datei
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = filename;
+                    downloadLink.click();
 
                     // Copy the pixels to a resized capture 2D canvas.
                     if (!this.fullCapture) {
@@ -297,6 +318,24 @@ export class VisualState extends BaseState {
 
                     // get the screen capture
                     attachmentVisualState.src = this.captureCanvas.toDataURL();
+                    // TODO Hier den Download Code entfernen
+                    /*
+                    const dataUrl = this.captureCanvas.toDataURL();
+                    const base64Data = dataUrl.split(",")[1];
+                    // Dekodieren des Base64-Strings in einen ArrayBuffer
+                    const arrayBuffer = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+                    // Erstellen eines Blob-Objekts aus dem ArrayBuffer
+                    const blob = new Blob([arrayBuffer], { type: "image/png" });
+                    // Erstellen eines Dateinamens
+                    const filename = `image-${Date.now()}.png`;
+                    // Erstellen eines Links zum Herunterladen der Datei
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = filename;
+                    downloadLink.click();
+
+                     */
+
                 }
             }
             catch (e) {

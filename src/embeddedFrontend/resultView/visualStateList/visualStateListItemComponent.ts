@@ -61,6 +61,7 @@ export class VisualStateListItemComponent extends BaseComponent<IVisualStateItem
         }
 
         const fbo = document.createElement("span");
+        // TODO Hier Liste mit Bildern links in Result view
         fbo.innerText = (state.VisualState.FrameBuffer) ?
             "Frame buffer: " + state.VisualState.FrameBuffer.__SPECTOR_Object_TAG.id :
             "Canvas frame buffer";

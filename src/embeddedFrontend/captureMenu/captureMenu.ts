@@ -30,7 +30,7 @@ interface IArrayLike<T> {
 
 export class CaptureMenu {
     public static SelectCanvasHelpText = "Please, select a canvas in the list above.";
-    public static ActionsHelpText = "Record with the red button, you can also pause or continue playing the current scene.";
+    public static ActionsHelpText = "#TEST#TEST#TEST Record with the red button, you can also pause or continue playing the current scene.";
     public static PleaseWaitHelpText = "Capturing, be patient (this can take up to 3 minutes)...";
 
     public readonly onCanvasSelected: Observable<ICanvasInformation>;

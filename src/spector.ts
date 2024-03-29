@@ -100,7 +100,7 @@ export class Spector {
         this.captureNextFrames = 0;
         this.captureNextCommands = 0;
         this.quickCapture = false;
-        this.fullCapture = false;
+        this.fullCapture = true;
         this.retry = 0;
         this.contexts = [];
 
@@ -121,6 +121,7 @@ export class Spector {
     }
 
     public displayUI(disableTracking: boolean = false) {
+
         if (!this.captureMenu) {
             this.getCaptureUI();
 
@@ -256,7 +257,7 @@ export class Spector {
     }
 
     public captureCanvas(canvas: HTMLCanvasElement | OffscreenCanvas,
-        commandCount = 0,
+        commandCount = 150,
         quickCapture: boolean = false,
         fullCapture: boolean = false): void {
         const contextSpy = this.getAvailableContextSpyByCanvas(canvas);
@@ -275,7 +276,7 @@ export class Spector {
     }
 
     public captureContext(context: WebGLRenderingContexts,
-        commandCount = 0,
+        commandCount = 150,
         quickCapture: boolean = false,
         fullCapture: boolean = false): void {
         let contextSpy = this.getAvailableContextSpyByCanvas(context.canvas as HTMLCanvasElement | OffscreenCanvas);
@@ -316,7 +317,7 @@ export class Spector {
     }
 
     public captureContextSpy(contextSpy: ContextSpy,
-        commandCount = 0,
+        commandCount = 150,
         quickCapture: boolean = false,
         fullCapture: boolean = false): void {
         this.quickCapture = quickCapture;

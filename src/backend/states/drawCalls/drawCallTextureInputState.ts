@@ -100,6 +100,9 @@ export class DrawCallTextureInputState {
                         gl2.framebufferTextureLayer(WebGlConstants.FRAMEBUFFER.value, WebGlConstants.COLOR_ATTACHMENT0.value,
                             storage, textureLevel, i);
                         visual["3D Layer " + i] = this.getCapture(gl, 0, 0, width, height, info.type, pixelated);
+                        // TODO Console.log TEST
+                        // tslint:disable-next-line:no-console
+                        console.log("LOG: " + visual["3D Layer " + i]);
                     }
                 }
                 else if (target === WebGlConstants.TEXTURE_2D_ARRAY && info.depth) {
@@ -161,6 +164,12 @@ export class DrawCallTextureInputState {
             this.workingCanvas.width = width;
             this.workingCanvas.height = height;
             const imageData = this.workingContext2D.createImageData(width, height);
+            // TODO Console.log TEST
+            // tslint:disable-next-line:no-console
+            console.log("IMAGE-Data: " + imageData);
+            // TODO Console.log TEST
+            // tslint:disable-next-line:no-console
+            console.log("IMAGE-Pixels: " + pixels);
             imageData.data.set(pixels);
             this.workingContext2D.putImageData(imageData, 0, 0);
 

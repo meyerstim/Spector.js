@@ -41,7 +41,7 @@ export abstract class BaseState {
 
     public startCapture(loadFromContext: boolean, quickCapture: boolean, fullCapture: boolean): State {
         this.quickCapture = quickCapture;
-        this.fullCapture = fullCapture;
+        this.fullCapture = true;
         this.capturedCommandsByState = {};
         if (loadFromContext && this.requireStartAndStopStates) {
             this.currentState = {};
